@@ -1,4 +1,6 @@
 let { Car } = require("../services/Car")
+// const msg = require("../middleware/msg")
+const msg = require("catchstatus")
 
 const carObj = {}
 
@@ -32,6 +34,8 @@ carObj.carImg = async (req, res) => {
 
 carObj.getCar = async (req, res) => {
     let data = await Car.getCar(req).catch((err) => { return err })
-    return res.send(`${data}`)
+    console.log(data.status)
+    let status = await msg(data)
+    return res.status(status).send(data)
 }
 module.exports = carObj

@@ -1,4 +1,4 @@
-let knex = require("../db/conection")
+let { knex } = require("../db/conection")
 
 
 async function addData(params) {

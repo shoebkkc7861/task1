@@ -12,4 +12,4 @@ router.use("/lang", lang)
 router.use("/csv", userCsv)
 
 
-module.exports = router;
+module.exports = router

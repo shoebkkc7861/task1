@@ -1,4 +1,5 @@
-const knex = require("../db/conection")
+const { knex, msg } = require("../db/conection")
+
 
 async function addProduct(param) {
     console.log(param, "dfghj")

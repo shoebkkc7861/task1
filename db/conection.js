@@ -11,6 +11,19 @@ const knex = require('knex')({
     }
 });
 
-// let a = knex.raw(`use ${config.port}`)
+let msg = knex.raw("use pro1")
+    .then(() => {
+        let data = knex.raw("select * from Message")
+        return data
+    })
+    .then((data) => {
+        let message = data[0]
+        // console.log(message)
+        return message
+    })
 
 
+module.exports = {
+    msg,
+    knex
+}

@@ -1,5 +1,8 @@
 let { Car } = require("../Model/Car")
 const { Lang } = require("../Model/lang")
+const { msg } = require("../db/conection")
+
+
 
 async function getCars() {
     let getCars = await Car.getCars().catch(() => { return false })
@@ -16,24 +19,44 @@ async function AddCar(param) {
 }
 
 async function CarImg(param) {
-    let img = await Car.addimg(param).catch((err) => { return err })
+    let img = await Car.addimg(param).catch((err) => { return { error: err } })
+    if (img.error) {
+        return { message: img.error }
+    }
     return { data: img }
 }
 
 async function getCar(param) {
-    let message = await Lang.getMessage(param).catch((err) => { return err })
+
+    let message = await msg
+    let msgData;
+
+    for (let i of message) {
+        if (i.lang === param.body.lang) {
+            msgData = i
+        }
+    }
+
+
+
     let car = await Car.getCar(param).catch((err) => { return err })
     if (car.length == 0) {
-        return message[0].fail
+        let data = {
+            message: msgData.fail,
+            status: false
+        }
+        return data
     }
     let data = {
-        message: message[0].success,
-        car: car
+        message: msgData.success,
+        car: car,
+        status: true
     }
 
-    return JSON.stringify(data)
+    return data
 
 }
+
 
 
 module.exports = {

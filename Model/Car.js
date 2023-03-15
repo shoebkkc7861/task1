@@ -1,4 +1,4 @@
-let knex = require("../db/conection")
+let { msg, knex } = require("../db/conection")
 
 async function getCars() {
     let car = await knex('Car').select("*").catch(() => { return false })
@@ -13,7 +13,6 @@ async function addCar(param) {
 async function addimg(param) {
     let img = await knex("CarImg").insert(param).catch((err) => { return err })
     return img
-
 }
 
 

@@ -1,25 +1,19 @@
 const { product } = require("../services/Product")
 const { validation } = require("../validator/product")
 
+
 productObj = {}
 
 
 productObj.add = async (req, res) => {
 
-    validation(req, res, {
-        "productName": "required|string",
-        "price": "required|integer",
-        "descreption": "required|string",
-        "imgPath": "string",
-        "createdBy": "required|integer",
-        "updatedBy": "integer"
-    })
+
     validation.addProduct(req, res)
 
     let form_data = {
         productName: req.body.productName,
         price: req.body.price,
-        descreption: req.body.descreption,
+        description: req.body.description,
         imgPath: req.files,
         createdBy: req.body.createdBy,
         updatedBy: req.body.updatedBy

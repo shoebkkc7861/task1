@@ -1,4 +1,4 @@
-let knex = require("../db/conection")
+let { knex } = require("../db/conection")
 
 async function addLang(params) {
     let lang = await knex("Message").insert(params).catch((err) => { return { error: err } })

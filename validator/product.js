@@ -10,7 +10,7 @@ const addProduct = async (req, res, next) => {
     const validationRule = {
         "productName": "required|string",
         "price": "required|integer",
-        "descreption": "required|string",
+        "description": "required|string",
         "imgPath": "string",
         "createdBy": "required|integer",
         "updatedBy": "integer"
